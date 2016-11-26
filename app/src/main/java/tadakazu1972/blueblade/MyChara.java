@@ -54,28 +54,22 @@ public class MyChara {
             vx = 0.0f;
         }
         //当たり判定用マップ座標算出
-        x1 = (int) (wx +1.0f+ vx) / 8; if (x1 < 0) x1 = 0; if (x1 > 254) x1 = 254;
-        y1 = (int) (wy +1.0f+ vy) / 8; if (y1 < 0) y1 = 0; if (y1 > 299) y1 = 299;
-        x2 = (int) (wx +6.0f+ vx) / 8; if (x2 > 254) x2 = 254; if (x2 < 0) x2 = 0;
-        y2 = (int) (wy +6.0f+ vy) / 8; if (y2 > 299) y2 = 299; if (y2 < 0) y2 = 0;
+        x1 = (int) (wx +1.0f+ vx) / 8; if (x1 < 0) x1 = 0; if (x1 > 99) x1 = 99;
+        y1 = (int) (wy +1.0f+ vy) / 8; if (y1 < 0) y1 = 0; if (y1 > 99) y1 = 99;
+        x2 = (int) (wx +6.0f+ vx) / 8; if (x2 > 99) x2 = 99; if (x2 < 0) x2 = 0;
+        y2 = (int) (wy +6.0f+ vy) / 8; if (y2 > 99) y2 = 99; if (y2 < 0) y2 = 0;
         //カベ判定
         if (map.MAP[y1][x1] > 4 || map.MAP[y1][x2] > 4 || map.MAP[y2][x1] > 4 || map.MAP[y2][x2] > 4) {
             vx = 0.0f;
             vy = 0.0f;
-            // Adjust mapy
-            if (ac.mapy > -3.0f){
-                ac.mapy = 0.0f;
-            } else if (ac.mapy < -6.0f){
-                ac.mapy = -8.0f;
-            }
         }
         //ワールド座標更新
         wx = wx + vx;
         if (wx < 0.0f) wx = 0.0f;
-        if (wx > 800.0f) wx = 800.0f;
+        if (wx > 792.0f) wx = 792.0f;
         wy = wy + vy;
         if (wy < 0.0f) wy = 0.0f;
-        if (wy > 800.0f) wy = 800.0f;
+        if (wy > 792.0f) wy = 792.0f;
         //ワールド当たり判定移動
         l = wx + 1.0f + vx;
         r = wx + 6.0f + vx;
@@ -84,11 +78,11 @@ public class MyChara {
         //画面座標更新
         x = x + vx;
         if ( x > 128.0f ) {
-            if ( ac.baseX != 80) {
+            if ( ac.baseX != 79) {
                 x = 128.0f;
                 ac.mapx = ac.mapx - vx;
                 if ( wx / 8.0f > ac.baseX + 17 ) { //画面表示限界の１つ分前を超えたら代入
-                    ac.baseX = ac.baseX + 1; if (ac.baseX > 80) { ac.baseX = 80; }// because baseX + (0 to 9) = Map Array's Maximum
+                    ac.baseX = ac.baseX + 1; if (ac.baseX > 79) { ac.baseX = 79; }// because baseX + (0 to 9) = Map Array's Maximum
                     ac.mapx = 0.0f;
                 }
             } else if (ac.mapx != -8.0f) { //右端の限界まで引っ張り出していなければmapxを動かす
@@ -112,11 +106,11 @@ public class MyChara {
         }
         y = y + vy;
         if (y > 128.0f) {
-            if ( ac.baseY != 80) {
+            if ( ac.baseY != 79) {
                 y = 128.0f;
                 ac.mapy = ac.mapy - vy;
                 if ( wy / 8.0f > ac.baseY + 17 ) {
-                    ac.baseY = ac.baseY + 1; if (ac.baseY > 80) { ac.baseY = 80; }
+                    ac.baseY = ac.baseY + 1; if (ac.baseY > 79) { ac.baseY = 79; }
                     ac.mapy = 0.0f;
                 }
             } else if ( ac.mapy != -8.0f ) { //最下段の限界まで引っ張りだしていなければmapyを動かす

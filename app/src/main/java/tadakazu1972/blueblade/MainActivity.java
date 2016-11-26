@@ -307,7 +307,7 @@ public class MainActivity extends AppCompatActivity implements Runnable, android
                 }
             }
             // 右辺
-            if (baseX<19){
+            if (baseX<79){
                 for (int y=0;y<20;y++){
                     canvas.drawBitmap(sMap[map.MAP[baseY+y][baseX+20]], 160.0f+mapx, y*8.0f+mapy, null);
                 }
@@ -319,7 +319,7 @@ public class MainActivity extends AppCompatActivity implements Runnable, android
                 }
             }
             // 下辺
-            if (baseY<19){
+            if (baseY<79){
                 for (int x=0;x<20;x++){
                     canvas.drawBitmap(sMap[map.MAP[baseY+20][baseX+x]], x*8.0f+mapx, 160.0f+mapy, null);
                 }
@@ -345,7 +345,9 @@ public class MainActivity extends AppCompatActivity implements Runnable, android
             canvas.drawText("wy="+String.valueOf(myChara.wy), 2, 40, paint0);
             canvas.drawText("baseX="+String.valueOf(baseX), 2, 46, paint0);
             canvas.drawText("baseY="+String.valueOf(baseY), 2, 52, paint0);
-            //canvas.drawText("MAP[y][x]="+String.valueOf(map.MAP[baseY][baseX]), 20, 100, paint0);
+            int mx = (int)myChara.x/8;
+            int my = (int)myChara.y/8;
+            canvas.drawText("MAP[y][x]="+String.valueOf(map.MAP[mx][my]), 2, 100, paint0);
         }
         holder.unlockCanvasAndPost(canvas);
     }
